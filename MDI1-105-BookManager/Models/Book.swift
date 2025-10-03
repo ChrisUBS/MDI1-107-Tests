@@ -12,7 +12,7 @@ struct Book: Identifiable, Hashable {
     var id = UUID()
     var title: String = ""
     var imageData: Data?
-    var description: String = ""
+    var summary: String = ""
     var author: String = ""
     var year: Int? = nil
     var category: String = ""

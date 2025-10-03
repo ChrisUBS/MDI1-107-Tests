@@ -10,6 +10,7 @@ import SwiftUI
 struct BookDetailView: View {
     @Bindable var book: PersistentBook
     @State private var showingEdit = false
+    @Environment(\.modelContext) private var modelContext
     
     var body: some View {
         ScrollView {
@@ -82,7 +83,7 @@ struct BookDetailView: View {
             }
         }
         .sheet(isPresented: $showingEdit) {
-            AddEditBookView(book: book) { _ in }
+            AddEditBookView(book: book, modelContext: modelContext)
         }
     }
 }

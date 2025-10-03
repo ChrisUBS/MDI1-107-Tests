@@ -20,6 +20,7 @@ struct BookListView: View {
     @State var isFilteringPresented: Bool = false
     @State var selectedGenre: Genre?
     @State var selectedStatus: ReadingStatus?
+    @Environment(\.modelContext) private var modelContext
     
     // Computed Properties
     private var gridLayout: [GridItem] {
@@ -60,10 +61,7 @@ struct BookListView: View {
                     })
                 )
                 .sheet(isPresented: $showEditView) {
-                    AddEditBookView(book: newBook) { savedBook in
-                        context.insert(savedBook)
-                        try? context.save()
-                    }
+                    AddEditBookView(book: newBook, modelContext: modelContext)
                 }
                 .sheet(isPresented: $isFilteringPresented) {
                     FilterView(selectedGenre: $selectedGenre, selectedStatus: $selectedStatus)
@@ -90,12 +88,7 @@ struct BookListView: View {
                     })
                 )
                 .sheet(isPresented: $showEditView) {
-                    AddEditBookView(book: newBook) { savedBook in
-                        if !books.contains(where: { $0.id == savedBook.id }) {
-                            context.insert(savedBook)
-                            try? context.save()
-                        }
-                    }
+                    AddEditBookView(book: newBook, modelContext: modelContext)
                 }
                 .sheet(isPresented: $isFilteringPresented) {
                     FilterView(selectedGenre: $selectedGenre, selectedStatus: $selectedStatus)
