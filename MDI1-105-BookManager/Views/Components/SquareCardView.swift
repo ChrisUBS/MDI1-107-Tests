@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SquareCardView: View {
-    var book: PersistentBook
+    let book: PersistentBook
     var showRating: Bool
     
     var body: some View {

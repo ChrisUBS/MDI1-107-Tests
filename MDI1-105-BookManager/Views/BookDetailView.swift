@@ -9,8 +9,14 @@ import SwiftUI
 
 struct BookDetailView: View {
     @Bindable var book: PersistentBook
-    @State private var showingEdit = false
+    @State private var showingEdit: Bool = false
+    @State private var isFavorite: Bool = false
     @Environment(\.modelContext) private var modelContext
+    
+    init(book: PersistentBook) {
+        self.book = book
+        isFavorite = book.isFavorite
+    }
     
     var body: some View {
         ScrollView {
@@ -67,7 +73,11 @@ struct BookDetailView: View {
                     }
                     CustomCapsule(text: book.status.rawValue, color: Color.secondary)
                     Spacer()
-                    FavoriteToggle(isFavorite: $book.isFavorite)
+                    FavoriteToggle(isFavorite: $isFavorite)
+                        .onChange(of: isFavorite) {
+                            book.isFavorite = isFavorite
+                            try? modelContext.save()
+                        }
                 }
                 Spacer()
             }
