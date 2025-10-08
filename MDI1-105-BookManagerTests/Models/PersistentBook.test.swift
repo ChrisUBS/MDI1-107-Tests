@@ -27,6 +27,31 @@ struct PersistentBookTests {
         #expect(book.author == "John Doe")
         #expect(book.rating == 4)
         #expect(book.isFavorite == true)
+        
+        // Professor's example
+        // Arrange
+        let bookTitle = "Test Title"
+        let status = ReadingStatus.reading
+        let author = "Test Author"
+        let isFavorite = true
+        
+        // Act
+        let bookTest = PersistentBook(title: bookTitle)
+        
+        // Assert
+        #expect(bookTest.title == bookTitle)
+        
+        // Act II
+        bookTest.status = status
+        bookTest.author = author
+        bookTest.isFavorite = isFavorite
+        
+        // Assert II
+        #expect(bookTest.status == status)
+        #expect(bookTest.author == author)
+        #expect(bookTest.isFavorite == isFavorite)
+        
+        #expect(bookTest.getNameAndAuthor() == "Test Title - Test Author")
     }
     
     @Test("Book Modification")

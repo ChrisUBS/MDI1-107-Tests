@@ -61,7 +61,7 @@ struct BookListView: View {
                     })
                 )
                 .sheet(isPresented: $showEditView) {
-                    AddEditBookView(book: newBook, modelContext: modelContext)
+                    AddEditBookView(modelContext: modelContext)
                 }
                 .sheet(isPresented: $isFilteringPresented) {
                     FilterView(selectedGenre: $selectedGenre, selectedStatus: $selectedStatus)
@@ -88,7 +88,7 @@ struct BookListView: View {
                     })
                 )
                 .sheet(isPresented: $showEditView) {
-                    AddEditBookView(book: newBook, modelContext: modelContext)
+                    AddEditBookView(modelContext: modelContext)
                 }
                 .sheet(isPresented: $isFilteringPresented) {
                     FilterView(selectedGenre: $selectedGenre, selectedStatus: $selectedStatus)
