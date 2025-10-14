@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftUICore
+import SwiftUI
 
 public let SETTINGS_THEME_KEY = "SETTINGS_THEME_KEY"
 public let SETTINGS_ACCENT_COLOR_KEY = "SETTINGS_ACCENT_COLOR_KEY"
